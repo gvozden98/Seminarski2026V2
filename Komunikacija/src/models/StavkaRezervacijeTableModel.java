@@ -83,11 +83,18 @@ public class StavkaRezervacijeTableModel extends AbstractTableModel {
 
     public void obrisiStavku(int red) {
         stavke.remove(red);
+        renumerisiStavke();
         fireTableDataChanged();
     }
 
     public StavkaRezervacije vratiStavku(int red) {
         return stavke.get(red);
+    }
+
+    private void renumerisiStavke() {
+        for (int i = 0; i < stavke.size(); i++) {
+            stavke.get(i).setRb(i + 1);
+        }
     }
 
     private Object vratiTrajanje(StavkaRezervacije stavka) {

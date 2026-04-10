@@ -1,5 +1,6 @@
 package controller;
 
+import domain.KategorijaClanstva;
 import cordinator.MainCordinator;
 import domain.Korisnik;
 import domain.Rezervacija;
@@ -39,5 +40,9 @@ public class RezervacijaController {
 
     public List<Trening> vratiListuSvihTreninga() throws Exception {
         return Komunikacija.getInstance().vratiListuSvihTreninga();
+    }
+
+    public List<KategorijaClanstva> vratiListuSvihKategorijaClanstva() throws Exception {
+        return Komunikacija.getInstance().vratiListuSvihKategorijaClanstva();
     }
 }
