@@ -64,21 +64,6 @@ public class KreirajKorisnikaFormaController {
             }
         });
 
-        kreirajKorisnikaForma.izmeniAddMenuListener(new MenuListener() {
-            @Override
-            public void menuSelected(MenuEvent e) {
-                MainCordinator.getInstance().otvoriIzmeniKorisnikaFormu();
-            }
-
-            @Override
-            public void menuDeselected(MenuEvent e) {
-            }
-
-            @Override
-            public void menuCanceled(MenuEvent e) {
-            }
-        });
-
         kreirajKorisnikaForma.pretraziAddMenuListener(new MenuListener() {
             @Override
             public void menuSelected(MenuEvent e) {

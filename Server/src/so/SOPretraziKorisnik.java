@@ -23,12 +23,23 @@ public class SOPretraziKorisnik extends AbstractSO {
         if (kriterijum != null) {
             if (kriterijum.getIdKorisnik() != null) {
                 uslov = "WHERE idKorisnik=" + kriterijum.getIdKorisnik();
-            } else if (kriterijum.getEmail() != null && !kriterijum.getEmail().isBlank()) {
-                uslov = "WHERE email LIKE '%" + kriterijum.getEmail().trim() + "%'";
-            } else if (kriterijum.getPrezime() != null && !kriterijum.getPrezime().isBlank()) {
-                uslov = "WHERE prezime LIKE '%" + kriterijum.getPrezime().trim() + "%'";
-            } else if (kriterijum.getKategorijaClanstva() != null && kriterijum.getKategorijaClanstva().getIdKC() != null) {
-                uslov = "WHERE idKC=" + kriterijum.getKategorijaClanstva().getIdKC();
+            } else {
+                List<String> uslovi = new ArrayList<>();
+                if (kriterijum.getIme() != null && !kriterijum.getIme().isBlank()) {
+                    uslovi.add("ime LIKE '%" + kriterijum.getIme().trim() + "%'");
+                }
+                if (kriterijum.getPrezime() != null && !kriterijum.getPrezime().isBlank()) {
+                    uslovi.add("prezime LIKE '%" + kriterijum.getPrezime().trim() + "%'");
+                }
+                if (kriterijum.getEmail() != null && !kriterijum.getEmail().isBlank()) {
+                    uslovi.add("email LIKE '%" + kriterijum.getEmail().trim() + "%'");
+                }
+                if (kriterijum.getKategorijaClanstva() != null && kriterijum.getKategorijaClanstva().getIdKC() != null) {
+                    uslovi.add("idKC=" + kriterijum.getKategorijaClanstva().getIdKC());
+                }
+                if (!uslovi.isEmpty()) {
+                    uslov = "WHERE " + String.join(" AND ", uslovi);
+                }
             }
         }
         List<AbstractDomainObject> lista = broker.getAll(new Korisnik(), uslov);

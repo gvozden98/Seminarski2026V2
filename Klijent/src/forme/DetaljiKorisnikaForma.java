@@ -1,29 +1,32 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package forme;
 
 import domain.KategorijaClanstva;
+import domain.Korisnik;
 import java.awt.event.ActionListener;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.event.MenuListener;
 
 /**
  *
  * @author Ognjen
  */
-public class KreirajKorisnikaForma extends javax.swing.JFrame {
+public class DetaljiKorisnikaForma extends javax.swing.JDialog {
+
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     /**
-     * Creates new form KorisnikGlavnaForma
+     * Creates new form DetaljiKorisnika
      */
-    public KreirajKorisnikaForma() {
+    public DetaljiKorisnikaForma(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
-        setTitle("Kreiraj korisnika");
-        setLocationRelativeTo(null);
-        jTextField6.setEditable(false);
+        setTitle("Detalji korisnika");
+        setLocationRelativeTo(parent);
     }
 
     /**
@@ -37,6 +40,7 @@ public class KreirajKorisnikaForma extends javax.swing.JFrame {
 
         jLabel2 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
@@ -46,17 +50,15 @@ public class KreirajKorisnikaForma extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
+        jButton3 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel2.setText("Ime:");
+
+        jLabel7.setText("Kategorija");
 
         jLabel3.setText("Prezime:");
 
@@ -68,26 +70,20 @@ public class KreirajKorisnikaForma extends javax.swing.JFrame {
 
         jButton1.setText("Nazad");
 
-        jButton3.setText("Ubaci korisnika");
+        jButton2.setText("Izmeni korisnika");
 
-        jLabel7.setText("Kategorija");
-
-        jMenu1.setText("Pocetna");
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Kreiraj");
-        jMenuBar1.add(jMenu2);
-
-        jMenu5.setText("Pretrazi");
-        jMenuBar1.add(jMenu5);
-
-        setJMenuBar(jMenuBar1);
+        jButton3.setText("Obrisi korisnika");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
@@ -95,32 +91,34 @@ public class KreirajKorisnikaForma extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6)
-                    .addComponent(jButton1)
-                    .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel7)
+                    .addComponent(jButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
-                        .addComponent(jTextField3)
-                        .addComponent(jTextField4)
-                        .addComponent(jTextField5)
-                        .addComponent(jTextField6))
-                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton3)
+                        .addGap(32, 32, 32)
+                        .addComponent(jButton2))
+                    .addComponent(jTextField2)
+                    .addComponent(jTextField3)
+                    .addComponent(jTextField4)
+                    .addComponent(jTextField5)
+                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextField6))
+                .addGap(56, 56, 56))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -132,19 +130,24 @@ public class KreirajKorisnikaForma extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
+                    .addComponent(jButton2)
                     .addComponent(jButton3))
-                .addGap(19, 19, 19))
+                .addGap(14, 14, 14))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -163,21 +166,28 @@ public class KreirajKorisnikaForma extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(KreirajKorisnikaForma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DetaljiKorisnikaForma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(KreirajKorisnikaForma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DetaljiKorisnikaForma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(KreirajKorisnikaForma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DetaljiKorisnikaForma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(KreirajKorisnikaForma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DetaljiKorisnikaForma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new KreirajKorisnikaForma().setVisible(true);
+                DetaljiKorisnikaForma dialog = new DetaljiKorisnikaForma(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
@@ -186,20 +196,28 @@ public class KreirajKorisnikaForma extends javax.swing.JFrame {
         jButton1.addActionListener(actionListener);
     }
 
-    public void ubaciKorisnikaAddActionListener(ActionListener actionListener) {
+    public void izmeniKorisnikaAddActionListener(ActionListener actionListener) {
+        jButton2.addActionListener(actionListener);
+    }
+
+    public void obrisiKorisnikaAddActionListener(ActionListener actionListener) {
         jButton3.addActionListener(actionListener);
     }
 
-    public void pocetnaAddMenuListener(MenuListener menuListener) {
-        jMenu1.addMenuListener(menuListener);
+    public void setKategorije(List<KategorijaClanstva> kategorije) {
+        DefaultComboBoxModel<KategorijaClanstva> model = new DefaultComboBoxModel<>();
+        for (KategorijaClanstva kategorija : kategorije) {
+            model.addElement(kategorija);
+        }
+        jComboBox1.setModel(model);
     }
 
-    public void kreirajAddMenuListener(MenuListener menuListener) {
-        jMenu2.addMenuListener(menuListener);
+    public void setSelektovanaKategorija(KategorijaClanstva kategorijaClanstva) {
+        jComboBox1.setSelectedItem(kategorijaClanstva);
     }
 
-    public void pretraziAddMenuListener(MenuListener menuListener) {
-        jMenu5.addMenuListener(menuListener);
+    public KategorijaClanstva getSelektovanaKategorija() {
+        return (KategorijaClanstva) jComboBox1.getSelectedItem();
     }
 
     public String getIme() {
@@ -222,33 +240,28 @@ public class KreirajKorisnikaForma extends javax.swing.JFrame {
         return jTextField6.getText().trim();
     }
 
-    public void setDatumRegistracije(String datumRegistracije) {
-        jTextField6.setText(datumRegistracije);
-    }
-
-    public void setKategorije(List<KategorijaClanstva> kategorije) {
-        DefaultComboBoxModel<KategorijaClanstva> model = new DefaultComboBoxModel<>();
-        for (KategorijaClanstva kategorija : kategorije) {
-            model.addElement(kategorija);
+    public void setKorisnik(Korisnik korisnik) {
+        if (korisnik == null) {
+            jTextField2.setText("");
+            jTextField3.setText("");
+            jTextField4.setText("");
+            jTextField5.setText("");
+            jTextField6.setText("");
+            jComboBox1.setSelectedItem(null);
+            return;
         }
-        jComboBox1.setModel(model);
-        jComboBox1.setSelectedItem(null);
-    }
 
-    public KategorijaClanstva getSelektovanaKategorija() {
-        return (KategorijaClanstva) jComboBox1.getSelectedItem();
-    }
-
-    public void ocistiFormu() {
-        jTextField2.setText("");
-        jTextField3.setText("");
-        jTextField4.setText("");
-        jTextField5.setText("");
-        jComboBox1.setSelectedItem(null);
+        jTextField2.setText(korisnik.getIme() == null ? "" : korisnik.getIme());
+        jTextField3.setText(korisnik.getPrezime() == null ? "" : korisnik.getPrezime());
+        jTextField4.setText(korisnik.getEmail() == null ? "" : korisnik.getEmail());
+        jTextField5.setText(korisnik.getTelefon() == null ? "" : korisnik.getTelefon());
+        jTextField6.setText(korisnik.getDatumRegistracije() == null ? "" : korisnik.getDatumRegistracije().format(FORMATTER));
+        jComboBox1.setSelectedItem(korisnik.getKategorijaClanstva());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<KategorijaClanstva> jComboBox1;
     private javax.swing.JLabel jLabel2;
@@ -257,10 +270,6 @@ public class KreirajKorisnikaForma extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
