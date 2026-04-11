@@ -91,6 +91,12 @@ public class StavkaRezervacijeTableModel extends AbstractTableModel {
         return stavke.get(red);
     }
 
+    public void izmeniStavku(int red, StavkaRezervacije stavka) {
+        stavka.setRb(stavke.get(red).getRb());
+        stavke.set(red, stavka);
+        fireTableDataChanged();
+    }
+
     private void renumerisiStavke() {
         for (int i = 0; i < stavke.size(); i++) {
             stavke.get(i).setRb(i + 1);

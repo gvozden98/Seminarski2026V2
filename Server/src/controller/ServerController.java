@@ -3,6 +3,7 @@ package controller;
 import domain.KategorijaClanstva;
 import domain.Korisnik;
 import domain.Rezervacija;
+import domain.StavkaRezervacije;
 import domain.SportskiObjekat;
 import domain.TipOpreme;
 import domain.Trening;
@@ -10,6 +11,7 @@ import java.util.List;
 import komunikacija.PretraziRezervacijuRequest;
 import komunikacija.PrijavaSportskiObjekatRequest;
 import komunikacija.RezervacijaPretraga;
+import komunikacija.PromeniRezervacijuRequest;
 import so.SOObrisiKategorijaClanstva;
 import so.SOObrisiKorisnik;
 import so.SOObrisiTrening;
@@ -36,6 +38,7 @@ import so.SOUcitajListuSportskihObjekata;
 import so.SOUcitajListuTreninga;
 import so.SOVratiListuKorisnika;
 import so.SOVratiListuRezervacija;
+import so.SOVratiListuStavkiRezervacije;
 import so.SOVratiListuSportskihObjekata;
 import so.SOVratiListuTipovaOpreme;
 import so.SOVratiListuTreninga;
@@ -72,9 +75,15 @@ public class ServerController {
         return so.getRezervacije();
     }
 
-    public void promeniRezervaciju(Rezervacija rezervacija) throws Exception {
+    public void promeniRezervaciju(PromeniRezervacijuRequest request) throws Exception {
         SOPromeniRezervaciju so = new SOPromeniRezervaciju();
+        so.execute(request);
+    }
+
+    public List<StavkaRezervacije> vratiListuStavkiRezervacije(Rezervacija rezervacija) throws Exception {
+        SOVratiListuStavkiRezervacije so = new SOVratiListuStavkiRezervacije();
         so.execute(rezervacija);
+        return so.getStavke();
     }
 
     public List<SportskiObjekat> vratiListuSvihSportskihObjekata() throws Exception {

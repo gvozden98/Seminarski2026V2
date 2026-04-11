@@ -5,6 +5,14 @@
 package forme;
 
 import java.awt.event.ActionListener;
+import domain.Korisnik;
+import domain.SportskiObjekat;
+import domain.Trening;
+import enums.StatusRezervacije;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import komunikacija.RezervacijaPretraga;
+import models.RezervacijaTableModel;
 
 /**
  *
@@ -17,6 +25,7 @@ public class IzmeniRezervacijuForma extends javax.swing.JFrame {
      */
     public IzmeniRezervacijuForma() {
         initComponents();
+        jTable1.setModel(new RezervacijaTableModel());
         setLocationRelativeTo(null);
     }
 
@@ -47,11 +56,7 @@ public class IzmeniRezervacijuForma extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -76,13 +81,11 @@ public class IzmeniRezervacijuForma extends javax.swing.JFrame {
 
         jButton3.setText("Pretrazi");
 
-        jLabel3.setText("Datum");
+        jLabel3.setText("Trening");
 
         jButton4.setText("Ponisti");
 
         jLabel4.setText("Status");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jButton5.setText("Izmeni Rezervaciju");
 
@@ -159,6 +162,93 @@ public class IzmeniRezervacijuForma extends javax.swing.JFrame {
         jButton1.addActionListener(actionListener);
     }
 
+    public void pretraziAddActionListener(ActionListener actionListener) {
+        jButton3.addActionListener(actionListener);
+    }
+
+    public void ponistiAddActionListener(ActionListener actionListener) {
+        jButton4.addActionListener(actionListener);
+    }
+
+    public void pogledajRezervacijuAddActionListener(ActionListener actionListener) {
+        jButton2.addActionListener(actionListener);
+    }
+
+    public void izmeniRezervacijuAddActionListener(ActionListener actionListener) {
+        jButton5.addActionListener(actionListener);
+    }
+
+    public void setSportskiObjekti(List<SportskiObjekat> sportskiObjekti) {
+        DefaultComboBoxModel<SportskiObjekat> model = new DefaultComboBoxModel<>();
+        for (SportskiObjekat sportskiObjekat : sportskiObjekti) {
+            model.addElement(sportskiObjekat);
+        }
+        jComboBox1.setModel(model);
+        jComboBox1.setSelectedItem(null);
+    }
+
+    public void setKorisnici(List<Korisnik> korisnici) {
+        DefaultComboBoxModel<Korisnik> model = new DefaultComboBoxModel<>();
+        for (Korisnik korisnik : korisnici) {
+            model.addElement(korisnik);
+        }
+        jComboBox2.setModel(model);
+        jComboBox2.setSelectedItem(null);
+    }
+
+    public void setTreninzi(List<Trening> treninzi) {
+        DefaultComboBoxModel<Trening> model = new DefaultComboBoxModel<>();
+        for (Trening trening : treninzi) {
+            model.addElement(trening);
+        }
+        jComboBox3.setModel(model);
+        jComboBox3.setSelectedItem(null);
+    }
+
+    public void setStatusi() {
+        DefaultComboBoxModel<StatusRezervacije> model = new DefaultComboBoxModel<>();
+        for (StatusRezervacije statusRezervacije : StatusRezervacije.values()) {
+            model.addElement(statusRezervacije);
+        }
+        jComboBox4.setModel(model);
+        jComboBox4.setSelectedItem(null);
+    }
+
+    public SportskiObjekat getSelektovaniSportskiObjekat() {
+        return (SportskiObjekat) jComboBox1.getSelectedItem();
+    }
+
+    public Korisnik getSelektovaniKorisnik() {
+        return (Korisnik) jComboBox2.getSelectedItem();
+    }
+
+    public Trening getSelektovaniTrening() {
+        return (Trening) jComboBox3.getSelectedItem();
+    }
+
+    public StatusRezervacije getSelektovaniStatusRezervacije() {
+        return (StatusRezervacije) jComboBox4.getSelectedItem();
+    }
+
+    public void resetujFiltere() {
+        jComboBox1.setSelectedItem(null);
+        jComboBox2.setSelectedItem(null);
+        jComboBox3.setSelectedItem(null);
+        jComboBox4.setSelectedItem(null);
+    }
+
+    public void setRezervacije(List<RezervacijaPretraga> rezervacije) {
+        getRezervacijaTableModel().setRezervacije(rezervacije);
+    }
+
+    public RezervacijaTableModel getRezervacijaTableModel() {
+        return (RezervacijaTableModel) jTable1.getModel();
+    }
+
+    public int getSelektovaniRed() {
+        return jTable1.getSelectedRow();
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -200,10 +290,10 @@ public class IzmeniRezervacijuForma extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
+    private javax.swing.JComboBox<SportskiObjekat> jComboBox1;
+    private javax.swing.JComboBox<Korisnik> jComboBox2;
+    private javax.swing.JComboBox<Trening> jComboBox3;
+    private javax.swing.JComboBox<StatusRezervacije> jComboBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -5,10 +5,12 @@ import cordinator.MainCordinator;
 import domain.Korisnik;
 import domain.Rezervacija;
 import domain.SportskiObjekat;
+import domain.StavkaRezervacije;
 import domain.Trening;
 import java.util.List;
 import komunikacija.Komunikacija;
 import komunikacija.KreirajRezervacijuRequest;
+import komunikacija.PromeniRezervacijuRequest;
 import komunikacija.PretraziRezervacijuRequest;
 import komunikacija.RezervacijaPretraga;
 
@@ -28,8 +30,12 @@ public class RezervacijaController {
         return Komunikacija.getInstance().vratiListuRezervacija(kriterijum);
     }
 
-    public void promeniRezervaciju(Rezervacija rezervacija) throws Exception {
-        Komunikacija.getInstance().promeniRezervaciju(rezervacija);
+    public List<StavkaRezervacije> vratiListuStavkiRezervacije(Rezervacija rezervacija) throws Exception {
+        return Komunikacija.getInstance().vratiListuStavkiRezervacije(rezervacija);
+    }
+
+    public void promeniRezervaciju(PromeniRezervacijuRequest request) throws Exception {
+        Komunikacija.getInstance().promeniRezervaciju(request);
     }
 
     public List<SportskiObjekat> vratiListuSvihSportskihObjekata() throws Exception {

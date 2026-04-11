@@ -26,7 +26,7 @@ public class GlavnaFormaController {
         glavnaForma.rezervacijeAddActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                MainCordinator.getInstance().otvoriKreirajRezervacijuFormu();
+                MainCordinator.getInstance().zapocniKreiranjeRezervacije();
             }
         });
     }

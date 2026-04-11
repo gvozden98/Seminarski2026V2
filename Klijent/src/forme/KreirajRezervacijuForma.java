@@ -13,6 +13,7 @@ import java.awt.event.FocusListener;
 import java.awt.event.ItemListener;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.event.MenuListener;
 import models.StavkaRezervacijeTableModel;
 
@@ -68,6 +69,7 @@ public class KreirajRezervacijuForma extends javax.swing.JFrame {
         jComboBox2 = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         jComboBox3 = new javax.swing.JComboBox<>();
+        jButton5 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -114,6 +116,8 @@ public class KreirajRezervacijuForma extends javax.swing.JFrame {
         jLabel9.setText("Trening");
 
         jLabel7.setText("Sportski objekat");
+
+        jButton5.setText("Izmeni stavku");
 
         jMenu1.setText("Pocetna");
         jMenuBar1.add(jMenu1);
@@ -170,8 +174,11 @@ public class KreirajRezervacijuForma extends javax.swing.JFrame {
                                         .addComponent(jLabel6)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jButton2)
-                                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jButton2)
+                                                .addGap(50, 50, 50)
+                                                .addComponent(jButton5))))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel5)
@@ -240,7 +247,8 @@ public class KreirajRezervacijuForma extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jButton2)
+                    .addComponent(jButton5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -283,6 +291,14 @@ public class KreirajRezervacijuForma extends javax.swing.JFrame {
 
     public void rezervisiAddActionListener(ActionListener actionListener) {
         jButton4.addActionListener(actionListener);
+    }
+
+    public void izmeniStavkuAddActionListener(ActionListener actionListener) {
+        jButton5.addActionListener(actionListener);
+    }
+
+    public void stavkaSelectionAddListSelectionListener(ListSelectionListener listSelectionListener) {
+        jTable1.getSelectionModel().addListSelectionListener(listSelectionListener);
     }
 
     public void setKorisnici(List<Korisnik> korisnici) {
@@ -365,12 +381,42 @@ public class KreirajRezervacijuForma extends javax.swing.JFrame {
         jTextField3.setText(ukupanPopust);
     }
 
+    public void setDatumVremePocetka(String datumVremePocetka) {
+        jTextField5.setText(datumVremePocetka);
+    }
+
+    public void setSelektovaniKorisnik(Korisnik korisnik) {
+        jComboBox1.setSelectedItem(korisnik);
+    }
+
+    public void setSelektovaniTrening(Trening trening) {
+        jComboBox2.setSelectedItem(trening);
+    }
+
+    public void setSelektovaniSportskiObjekat(SportskiObjekat sportskiObjekat) {
+        jComboBox3.setSelectedItem(sportskiObjekat);
+    }
+
+    public void setStavke(List<StavkaRezervacije> stavke) {
+        getStavkaRezervacijeTableModel().setStavke(stavke);
+    }
+
+    public void setTekstAkcionogDugmeta(String tekst) {
+        jButton4.setText(tekst);
+    }
+
     public StavkaRezervacijeTableModel getStavkaRezervacijeTableModel() {
         return (StavkaRezervacijeTableModel) jTable1.getModel();
     }
 
     public int getSelektovaniRed() {
         return jTable1.getSelectedRow();
+    }
+
+    public void selektujRed(int red) {
+        if (red >= 0 && red < jTable1.getRowCount()) {
+            jTable1.setRowSelectionInterval(red, red);
+        }
     }
 
     /**
@@ -414,6 +460,7 @@ public class KreirajRezervacijuForma extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<Korisnik> jComboBox1;
     private javax.swing.JComboBox<Trening> jComboBox2;
     private javax.swing.JComboBox<SportskiObjekat> jComboBox3;

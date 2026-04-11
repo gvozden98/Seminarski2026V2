@@ -4,6 +4,7 @@ import domain.KategorijaClanstva;
 import domain.Korisnik;
 import domain.Rezervacija;
 import domain.SportskiObjekat;
+import domain.StavkaRezervacije;
 import domain.TipOpreme;
 import domain.Trening;
 import enums.Operation;
@@ -69,8 +70,13 @@ public class Komunikacija {
         return (List<Rezervacija>) posaljiRequest(new Request(Operation.VRATI_LISTU_REZERVACIJA, kriterijum));
     }
 
-    public void promeniRezervaciju(Rezervacija rezervacija) throws Exception {
-        posaljiRequest(new Request(Operation.PROMENI_REZERVACIJU, rezervacija));
+    @SuppressWarnings("unchecked")
+    public List<StavkaRezervacije> vratiListuStavkiRezervacije(Rezervacija rezervacija) throws Exception {
+        return (List<StavkaRezervacije>) posaljiRequest(new Request(Operation.VRATI_LISTU_STAVKI_REZERVACIJE, rezervacija));
+    }
+
+    public void promeniRezervaciju(PromeniRezervacijuRequest request) throws Exception {
+        posaljiRequest(new Request(Operation.PROMENI_REZERVACIJU, request));
     }
 
     @SuppressWarnings("unchecked")

@@ -4,6 +4,7 @@ import controller.ServerController;
 import domain.KategorijaClanstva;
 import domain.Korisnik;
 import domain.Rezervacija;
+import domain.StavkaRezervacije;
 import domain.SportskiObjekat;
 import domain.TipOpreme;
 import domain.Trening;
@@ -12,6 +13,7 @@ import java.net.Socket;
 import java.net.SocketException;
 import java.util.List;
 import komunikacija.KreirajRezervacijuRequest;
+import komunikacija.PromeniRezervacijuRequest;
 import komunikacija.PretraziRezervacijuRequest;
 import komunikacija.PrijavaSportskiObjekatRequest;
 import komunikacija.Receiver;
@@ -84,8 +86,12 @@ public class ClientThread extends Thread {
                 List<Rezervacija> rezervacije = ServerController.getInstance().vratiListuRezervacija(request.getArgument());
                 response.setResponse(rezervacije);
             }
+            case VRATI_LISTU_STAVKI_REZERVACIJE -> {
+                List<StavkaRezervacije> stavke = ServerController.getInstance().vratiListuStavkiRezervacije((Rezervacija) request.getArgument());
+                response.setResponse(stavke);
+            }
             case PROMENI_REZERVACIJU -> {
-                ServerController.getInstance().promeniRezervaciju((Rezervacija) request.getArgument());
+                ServerController.getInstance().promeniRezervaciju((PromeniRezervacijuRequest) request.getArgument());
                 response.setResponse(null);
             }
             case VRATI_LISTU_SVI_SPORTSKI_OBJEKAT -> response.setResponse(ServerController.getInstance().vratiListuSvihSportskihObjekata());
