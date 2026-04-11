@@ -29,5 +29,12 @@ public class GlavnaFormaController {
                 MainCordinator.getInstance().zapocniKreiranjeRezervacije();
             }
         });
+
+        glavnaForma.korisniciAddActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MainCordinator.getInstance().otvoriKreirajKorisnikaFormu();
+            }
+        });
     }
 }

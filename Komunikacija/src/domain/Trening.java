@@ -88,12 +88,12 @@ public class Trening implements AbstractDomainObject {
 
     @Override
     public String vratiKoloneZaUbacivanje() {
-        return "idTrening,naziv,trajanjeMin,osnovnaCenaPoSatu,statusTreninga";
+        return "naziv,trajanjeMin,osnovnaCenaPoSatu,statusTreninga";
     }
 
     @Override
     public String vratiVrednostiZaUbacivanje() {
-        return idTrening + ",'" + naziv + "'," + trajanjeMin + "," + osnovnaCenaPoSatu + ",'" + statusTreninga + "'";
+        return "'" + naziv + "'," + trajanjeMin + "," + osnovnaCenaPoSatu + ",'" + statusTreninga + "'";
     }
 
     @Override

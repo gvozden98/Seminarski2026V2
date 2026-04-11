@@ -74,12 +74,12 @@ public class KategorijaClanstva implements AbstractDomainObject {
 
     @Override
     public String vratiKoloneZaUbacivanje() {
-        return "idKC,nazivKategorije,brojTreninga,popustProcenat";
+        return "nazivKategorije,brojTreninga,popustProcenat";
     }
 
     @Override
     public String vratiVrednostiZaUbacivanje() {
-        return idKC + ",'" + nazivKategorije + "'," + brojTreninga + "," + popustProcenat;
+        return "'" + nazivKategorije + "'," + brojTreninga + "," + popustProcenat;
     }
 
     @Override

@@ -113,12 +113,12 @@ public class Korisnik implements AbstractDomainObject {
 
     @Override
     public String vratiKoloneZaUbacivanje() {
-        return "idKorisnik,ime,prezime,email,telefon,datumRegistracije,idKC";
+        return "ime,prezime,email,telefon,datumRegistracije,idKC";
     }
 
     @Override
     public String vratiVrednostiZaUbacivanje() {
-        return idKorisnik + ",'" + ime + "','" + prezime + "','" + email + "','" + telefon
+        return "'" + ime + "','" + prezime + "','" + email + "','" + telefon
                 + "','" + datumRegistracije + "'," + kategorijaClanstva.getIdKC();
     }
 

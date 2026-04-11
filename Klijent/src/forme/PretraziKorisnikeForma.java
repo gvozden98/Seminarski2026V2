@@ -4,6 +4,9 @@
  */
 package forme;
 
+import java.awt.event.ActionListener;
+import javax.swing.event.MenuListener;
+
 /**
  *
  * @author Ognjen
@@ -15,6 +18,8 @@ public class PretraziKorisnikeForma extends javax.swing.JFrame {
      */
     public PretraziKorisnikeForma() {
         initComponents();
+        setTitle("Pretrazi korisnike");
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -178,6 +183,26 @@ public class PretraziKorisnikeForma extends javax.swing.JFrame {
                 new PretraziKorisnikeForma().setVisible(true);
             }
         });
+    }
+
+    public void nazadAddActionListener(ActionListener actionListener) {
+        jButton3.addActionListener(actionListener);
+    }
+
+    public void pocetnaAddMenuListener(MenuListener menuListener) {
+        // Forma nema meni u trenutnoj verziji.
+    }
+
+    public void kreirajAddMenuListener(MenuListener menuListener) {
+        // Forma nema meni u trenutnoj verziji.
+    }
+
+    public void izmeniAddMenuListener(MenuListener menuListener) {
+        // Forma nema meni u trenutnoj verziji.
+    }
+
+    public void pretraziAddMenuListener(MenuListener menuListener) {
+        // Forma nema meni u trenutnoj verziji.
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

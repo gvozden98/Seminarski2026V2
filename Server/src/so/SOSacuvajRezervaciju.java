@@ -2,9 +2,10 @@ package so;
 
 import domain.Rezervacija;
 import domain.StavkaRezervacije;
-import domain.AbstractDomainObject;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import komunikacija.KreirajRezervacijuRequest;
 
 public class SOSacuvajRezervaciju extends AbstractSO {
@@ -28,8 +29,7 @@ public class SOSacuvajRezervaciju extends AbstractSO {
     protected void executeOperation(Object object) throws Exception {
         KreirajRezervacijuRequest request = (KreirajRezervacijuRequest) object;
         rezervacija = request.getRezervacija();
-        rezervacija.setIdRezervacija(vratiNoviIdRezervacije());
-        broker.add(rezervacija);
+        sacuvajRezervaciju(rezervacija);
 
         List<StavkaRezervacije> stavke = new ArrayList<>(request.getStavke());
         for (StavkaRezervacije stavka : stavke) {
@@ -42,15 +42,12 @@ public class SOSacuvajRezervaciju extends AbstractSO {
         return rezervacija;
     }
 
-    private Integer vratiNoviIdRezervacije() throws Exception {
-        List<AbstractDomainObject> lista = broker.getAll(new Rezervacija(), "");
-        int maxId = 0;
-        for (AbstractDomainObject ado : lista) {
-            Rezervacija postojeca = (Rezervacija) ado;
-            if (postojeca.getIdRezervacija() != null && postojeca.getIdRezervacija() > maxId) {
-                maxId = postojeca.getIdRezervacija();
+    private void sacuvajRezervaciju(Rezervacija rezervacija) throws Exception {
+        try (PreparedStatement ps = broker.add(rezervacija);
+                ResultSet rs = ps.getGeneratedKeys()) {
+            if (rs.next()) {
+                rezervacija.setIdRezervacija(rs.getInt(1));
             }
         }
-        return maxId + 1;
     }
 }

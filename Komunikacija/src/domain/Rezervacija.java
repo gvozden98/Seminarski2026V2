@@ -119,12 +119,12 @@ public class Rezervacija implements AbstractDomainObject {
 
     @Override
     public String vratiKoloneZaUbacivanje() {
-        return "idRezervacija,datumKreiranja,statusRezervacije,ukupanIznos,ukupanPopust,idKorisnik,idObjekat";
+        return "datumKreiranja,statusRezervacije,ukupanIznos,ukupanPopust,idKorisnik,idObjekat";
     }
 
     @Override
     public String vratiVrednostiZaUbacivanje() {
-        return idRezervacija + ",'" + datumKreiranja + "','" + statusRezervacije + "'," + ukupanIznos
+        return "'" + datumKreiranja + "','" + statusRezervacije + "'," + ukupanIznos
                 + "," + ukupanPopust + "," + korisnik.getIdKorisnik() + "," + sportskiObjekat.getIdObjekat();
     }
 

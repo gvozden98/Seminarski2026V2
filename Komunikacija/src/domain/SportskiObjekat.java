@@ -96,12 +96,12 @@ public class SportskiObjekat implements AbstractDomainObject {
 
     @Override
     public String vratiKoloneZaUbacivanje() {
-        return "idObjekat,naziv,adresa,email,grad,sifra";
+        return "naziv,adresa,email,grad,sifra";
     }
 
     @Override
     public String vratiVrednostiZaUbacivanje() {
-        return idObjekat + ",'" + naziv + "','" + adresa + "','" + email + "','" + grad + "','" + sifra + "'";
+        return "'" + naziv + "','" + adresa + "','" + email + "','" + grad + "','" + sifra + "'";
     }
 
     @Override

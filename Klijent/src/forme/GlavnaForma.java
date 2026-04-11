@@ -106,6 +106,10 @@ public class GlavnaForma extends javax.swing.JFrame {
         rezervacijeBtn.addActionListener(actionListener);
     }
 
+    public void korisniciAddActionListener(ActionListener actionListener) {
+        korisniciBtn.addActionListener(actionListener);
+    }
+
     public void setUlogovaniSportskiObjekat(SportskiObjekat sportskiObjekat) {
         if (sportskiObjekat == null) {
             nazivLbl.setText("Naziv");

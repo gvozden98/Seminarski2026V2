@@ -74,12 +74,12 @@ public class TipOpreme implements AbstractDomainObject {
 
     @Override
     public String vratiKoloneZaUbacivanje() {
-        return "idTipa,naziv,proizvodjac,opis";
+        return "naziv,proizvodjac,opis";
     }
 
     @Override
     public String vratiVrednostiZaUbacivanje() {
-        return idTipa + ",'" + naziv + "','" + proizvodjac + "','" + opis + "'";
+        return "'" + naziv + "','" + proizvodjac + "','" + opis + "'";
     }
 
     @Override

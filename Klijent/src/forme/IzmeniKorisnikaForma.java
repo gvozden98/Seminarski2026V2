@@ -4,6 +4,9 @@
  */
 package forme;
 
+import java.awt.event.ActionListener;
+import javax.swing.event.MenuListener;
+
 /**
  *
  * @author Ognjen
@@ -15,6 +18,8 @@ public class IzmeniKorisnikaForma extends javax.swing.JFrame {
      */
     public IzmeniKorisnikaForma() {
         initComponents();
+        setTitle("Izmeni korisnika");
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -181,6 +186,10 @@ public class IzmeniKorisnikaForma extends javax.swing.JFrame {
                 new IzmeniKorisnikaForma().setVisible(true);
             }
         });
+    }
+
+    public void nazadAddActionListener(ActionListener actionListener) {
+        jButton3.addActionListener(actionListener);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
