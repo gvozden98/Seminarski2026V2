@@ -1,9 +1,10 @@
 package cordinator;
 
 import controller.GlavnaFormaController;
+import controller.DetaljiKorisnikaFormaController;
 import controller.IzmeniRezervacijuFormaController;
-import controller.IzmeniKorisnikaFormaController;
 import controller.KreirajKorisnikaFormaController;
+import controller.KreirajTipOpremeFormaController;
 import controller.KreirajRezervacijuFormaController;
 import controller.PretraziRezervacijeFormaController;
 import controller.PretraziKorisnikeFormaController;
@@ -13,10 +14,11 @@ import domain.Rezervacija;
 import domain.SportskiObjekat;
 import domain.StavkaRezervacije;
 import domain.Trening;
+import forme.DetaljiKorisnikaForma;
 import forme.GlavnaForma;
 import forme.IzmeniRezervacijuForma;
-import forme.IzmeniKorisnikaForma;
 import forme.KreirajKorisnikaForma;
+import forme.KreirajTipOpremeForma;
 import forme.KreirajRezervacijuForma;
 import forme.PretraziKorisnikeForma;
 import forme.PretraziRezervacijeForma;
@@ -46,10 +48,12 @@ public class MainCordinator {
     private PretraziRezervacijeFormaController pretraziRezervacijeFormaController;
     private KreirajKorisnikaForma kreirajKorisnikaForma;
     private KreirajKorisnikaFormaController kreirajKorisnikaFormaController;
-    private IzmeniKorisnikaForma izmeniKorisnikaFormaKorisnik;
-    private IzmeniKorisnikaFormaController izmeniKorisnikaFormaController;
+    private KreirajTipOpremeForma kreirajTipOpremeForma;
+    private KreirajTipOpremeFormaController kreirajTipOpremeFormaController;
     private PretraziKorisnikeForma pretraziKorisnikeForma;
     private PretraziKorisnikeFormaController pretraziKorisnikeFormaController;
+    private DetaljiKorisnikaForma detaljiKorisnikaForma;
+    private DetaljiKorisnikaFormaController detaljiKorisnikaFormaController;
 
     private MainCordinator() {
     }
@@ -132,6 +136,7 @@ public class MainCordinator {
     public void otvoriGlavnuFormu() {
         zatvoriRezervacijaForme();
         zatvoriKorisnikForme();
+        zatvoriOpremaForme();
         glavnaForma = new GlavnaForma();
         glavnaForma.setUlogovaniSportskiObjekat(ulogovaniSportskiObjekat);
         glavnaFormaController = new GlavnaFormaController(glavnaForma);
@@ -142,6 +147,7 @@ public class MainCordinator {
         zatvoriGlavnuFormu();
         zatvoriRezervacijaForme();
         zatvoriKorisnikForme();
+        zatvoriOpremaForme();
         kreirajRezervacijuForma = new KreirajRezervacijuForma();
         kreirajRezervacijuFormaController = new KreirajRezervacijuFormaController(kreirajRezervacijuForma);
         kreirajRezervacijuFormaController.otvori();
@@ -151,6 +157,7 @@ public class MainCordinator {
         zatvoriGlavnuFormu();
         zatvoriRezervacijaForme();
         zatvoriKorisnikForme();
+        zatvoriOpremaForme();
         izmeniRezervacijuForma = new IzmeniRezervacijuForma();
         izmeniRezervacijuFormaController = new IzmeniRezervacijuFormaController(izmeniRezervacijuForma);
         izmeniRezervacijuFormaController.otvori();
@@ -160,6 +167,7 @@ public class MainCordinator {
         zatvoriGlavnuFormu();
         zatvoriRezervacijaForme();
         zatvoriKorisnikForme();
+        zatvoriOpremaForme();
         pretraziRezervacijeForma = new PretraziRezervacijeForma();
         pretraziRezervacijeFormaController = new PretraziRezervacijeFormaController(pretraziRezervacijeForma);
         pretraziRezervacijeFormaController.otvori();
@@ -169,27 +177,37 @@ public class MainCordinator {
         zatvoriGlavnuFormu();
         zatvoriRezervacijaForme();
         zatvoriKorisnikForme();
+        zatvoriOpremaForme();
         kreirajKorisnikaForma = new KreirajKorisnikaForma();
         kreirajKorisnikaFormaController = new KreirajKorisnikaFormaController(kreirajKorisnikaForma);
         kreirajKorisnikaFormaController.otvori();
-    }
-
-    public void otvoriIzmeniKorisnikaFormu() {
-        zatvoriGlavnuFormu();
-        zatvoriRezervacijaForme();
-        zatvoriKorisnikForme();
-        izmeniKorisnikaFormaKorisnik = new IzmeniKorisnikaForma();
-        izmeniKorisnikaFormaController = new IzmeniKorisnikaFormaController(izmeniKorisnikaFormaKorisnik);
-        izmeniKorisnikaFormaController.otvori();
     }
 
     public void otvoriPretraziKorisnikeFormu() {
         zatvoriGlavnuFormu();
         zatvoriRezervacijaForme();
         zatvoriKorisnikForme();
+        zatvoriOpremaForme();
         pretraziKorisnikeForma = new PretraziKorisnikeForma();
         pretraziKorisnikeFormaController = new PretraziKorisnikeFormaController(pretraziKorisnikeForma);
         pretraziKorisnikeFormaController.otvori();
+    }
+
+    public void otvoriKreirajTipOpremeFormu() {
+        zatvoriGlavnuFormu();
+        zatvoriRezervacijaForme();
+        zatvoriKorisnikForme();
+        zatvoriOpremaForme();
+        kreirajTipOpremeForma = new KreirajTipOpremeForma();
+        kreirajTipOpremeFormaController = new KreirajTipOpremeFormaController(kreirajTipOpremeForma);
+        kreirajTipOpremeFormaController.otvori();
+    }
+
+    public void otvoriDetaljiKorisnikaFormu() {
+        java.awt.Frame parent = pretraziKorisnikeForma != null ? pretraziKorisnikeForma : glavnaForma;
+        detaljiKorisnikaForma = new DetaljiKorisnikaForma(parent, true);
+        detaljiKorisnikaFormaController = new DetaljiKorisnikaFormaController(detaljiKorisnikaForma);
+        detaljiKorisnikaFormaController.otvori();
     }
 
     private void zatvoriGlavnuFormu() {
@@ -223,15 +241,23 @@ public class MainCordinator {
             kreirajKorisnikaForma = null;
             kreirajKorisnikaFormaController = null;
         }
-        if (izmeniKorisnikaFormaKorisnik != null) {
-            izmeniKorisnikaFormaKorisnik.dispose();
-            izmeniKorisnikaFormaKorisnik = null;
-            izmeniKorisnikaFormaController = null;
-        }
         if (pretraziKorisnikeForma != null) {
             pretraziKorisnikeForma.dispose();
             pretraziKorisnikeForma = null;
             pretraziKorisnikeFormaController = null;
+        }
+        if (detaljiKorisnikaForma != null) {
+            detaljiKorisnikaForma.dispose();
+            detaljiKorisnikaForma = null;
+            detaljiKorisnikaFormaController = null;
+        }
+    }
+
+    private void zatvoriOpremaForme() {
+        if (kreirajTipOpremeForma != null) {
+            kreirajTipOpremeForma.dispose();
+            kreirajTipOpremeForma = null;
+            kreirajTipOpremeFormaController = null;
         }
     }
 }

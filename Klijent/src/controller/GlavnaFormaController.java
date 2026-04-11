@@ -36,5 +36,12 @@ public class GlavnaFormaController {
                 MainCordinator.getInstance().otvoriKreirajKorisnikaFormu();
             }
         });
+
+        glavnaForma.opremaAddActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MainCordinator.getInstance().otvoriKreirajTipOpremeFormu();
+            }
+        });
     }
 }

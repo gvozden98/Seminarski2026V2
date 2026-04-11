@@ -4,17 +4,22 @@
  */
 package forme;
 
+import enums.StanjeOpreme;
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author Ognjen
  */
-public class KreirajTipOpreme extends javax.swing.JFrame {
+public class KreirajTipOpremeForma extends javax.swing.JFrame {
 
     /**
      * Creates new form KreirajTipOpreme
      */
-    public KreirajTipOpreme() {
+    public KreirajTipOpremeForma() {
         initComponents();
+        setTitle("Kreiraj tip opreme");
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -42,11 +47,7 @@ public class KreirajTipOpreme extends javax.swing.JFrame {
 
         jLabel1.setText("Naziv");
 
-        jTextField1.setText("jTextField1");
-
         jLabel2.setText("Proizvodjac");
-
-        jTextField2.setText("jTextField2");
 
         jLabel3.setText("opis");
 
@@ -60,7 +61,7 @@ public class KreirajTipOpreme extends javax.swing.JFrame {
 
         jButton2.setText("Dodaj");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ODLICNO", "DOBRO", "OSTECENO" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -82,8 +83,8 @@ public class KreirajTipOpreme extends javax.swing.JFrame {
                         .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
-                                .addComponent(jTextField2))
+                                .addComponent(jTextField1)
+                                .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(17, Short.MAX_VALUE))
@@ -134,22 +135,74 @@ public class KreirajTipOpreme extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(KreirajTipOpreme.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(KreirajTipOpremeForma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(KreirajTipOpreme.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(KreirajTipOpremeForma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(KreirajTipOpreme.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(KreirajTipOpremeForma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(KreirajTipOpreme.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(KreirajTipOpremeForma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new KreirajTipOpreme().setVisible(true);
+                new KreirajTipOpremeForma().setVisible(true);
             }
         });
+    }
+
+    public void nazadAddActionListener(ActionListener actionListener) {
+        jButton1.addActionListener(actionListener);
+    }
+
+    public void dodajAddActionListener(ActionListener actionListener) {
+        jButton2.addActionListener(actionListener);
+    }
+
+    public String getNaziv() {
+        return jTextField1.getText().trim();
+    }
+
+    public String getProizvodjac() {
+        return jTextField2.getText().trim();
+    }
+
+    public String getOpis() {
+        return jTextArea1.getText().trim();
+    }
+
+    public StanjeOpreme getStanjeOpreme() {
+        Object selectedItem = jComboBox1.getSelectedItem();
+        if (selectedItem == null) {
+            return null;
+        }
+        return StanjeOpreme.valueOf(selectedItem.toString());
+    }
+
+    public void setStanjaOpreme() {
+        jComboBox1.removeAllItems();
+        for (StanjeOpreme stanjeOpreme : StanjeOpreme.values()) {
+            jComboBox1.addItem(stanjeOpreme.name());
+        }
+        if (jComboBox1.getItemCount() > 0) {
+            jComboBox1.setSelectedIndex(0);
+        }
+    }
+
+    public void setStatusEnabled(boolean enabled) {
+        jComboBox1.setEnabled(enabled);
+    }
+
+    public void ocistiFormu() {
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextArea1.setText("");
+        if (jComboBox1.getItemCount() > 0) {
+            jComboBox1.setSelectedIndex(0);
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

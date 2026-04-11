@@ -4,8 +4,13 @@
  */
 package forme;
 
+import domain.KategorijaClanstva;
+import domain.Korisnik;
 import java.awt.event.ActionListener;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.event.MenuListener;
+import models.KorisnikListModel;
 
 /**
  *
@@ -20,6 +25,7 @@ public class PretraziKorisnikeForma extends javax.swing.JFrame {
         initComponents();
         setTitle("Pretrazi korisnike");
         setLocationRelativeTo(null);
+        jList1.setModel(new KorisnikListModel());
     }
 
     /**
@@ -56,26 +62,13 @@ public class PretraziKorisnikeForma extends javax.swing.JFrame {
 
         jLabel9.setText("Kategorija");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jButton1.setText("Pretrazi");
 
         jButton2.setText("Ponisti");
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(jList1);
 
-        jButton3.setText("Povratak");
+        jButton3.setText("Nazad");
 
         jButton4.setText("Detalji");
 
@@ -83,41 +76,39 @@ public class PretraziKorisnikeForma extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(18, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(34, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel9)
-                                    .addComponent(jLabel8))
-                                .addGap(50, 50, 50))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jComboBox3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jComboBox4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(165, 165, 165)
-                                .addComponent(jButton2))))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50))
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel8))
+                        .addGap(50, 50, 50))
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2))
+                .addGap(44, 44, 44))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton4)
+                .addGap(40, 40, 40))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -134,16 +125,16 @@ public class PretraziKorisnikeForma extends javax.swing.JFrame {
                     .addComponent(jLabel9)
                     .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addGap(18, 18, 18)
+                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
                     .addComponent(jButton4))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
@@ -189,6 +180,18 @@ public class PretraziKorisnikeForma extends javax.swing.JFrame {
         jButton3.addActionListener(actionListener);
     }
 
+    public void pretraziAddActionListener(ActionListener actionListener) {
+        jButton1.addActionListener(actionListener);
+    }
+
+    public void ponistiAddActionListener(ActionListener actionListener) {
+        jButton2.addActionListener(actionListener);
+    }
+
+    public void detaljiAddActionListener(ActionListener actionListener) {
+        jButton4.addActionListener(actionListener);
+    }
+
     public void pocetnaAddMenuListener(MenuListener menuListener) {
         // Forma nema meni u trenutnoj verziji.
     }
@@ -205,6 +208,78 @@ public class PretraziKorisnikeForma extends javax.swing.JFrame {
         // Forma nema meni u trenutnoj verziji.
     }
 
+    public void setImena(List<String> imena) {
+        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
+        for (String ime : imena) {
+            model.addElement(ime);
+        }
+        jComboBox1.setModel(model);
+        jComboBox1.setSelectedItem(null);
+    }
+
+    public void setPrezimena(List<String> prezimena) {
+        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
+        for (String prezime : prezimena) {
+            model.addElement(prezime);
+        }
+        jComboBox2.setModel(model);
+        jComboBox2.setSelectedItem(null);
+    }
+
+    public void setEmailovi(List<String> emailovi) {
+        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
+        for (String email : emailovi) {
+            model.addElement(email);
+        }
+        jComboBox3.setModel(model);
+        jComboBox3.setSelectedItem(null);
+    }
+
+    public void setKategorije(List<KategorijaClanstva> kategorije) {
+        DefaultComboBoxModel<KategorijaClanstva> model = new DefaultComboBoxModel<>();
+        for (KategorijaClanstva kategorija : kategorije) {
+            model.addElement(kategorija);
+        }
+        jComboBox4.setModel(model);
+        jComboBox4.setSelectedItem(null);
+    }
+
+    public String getSelektovanoIme() {
+        return (String) jComboBox1.getSelectedItem();
+    }
+
+    public String getSelektovanoPrezime() {
+        return (String) jComboBox2.getSelectedItem();
+    }
+
+    public String getSelektovaniEmail() {
+        return (String) jComboBox3.getSelectedItem();
+    }
+
+    public KategorijaClanstva getSelektovanaKategorija() {
+        return (KategorijaClanstva) jComboBox4.getSelectedItem();
+    }
+
+    public void setKorisnici(List<Korisnik> korisnici) {
+        ((KorisnikListModel) jList1.getModel()).setKorisnici(korisnici);
+    }
+
+    public KorisnikListModel getKorisnikListModel() {
+        return (KorisnikListModel) jList1.getModel();
+    }
+
+    public int getSelektovaniIndex() {
+        return jList1.getSelectedIndex();
+    }
+
+    public void resetujFiltere() {
+        jComboBox1.setSelectedItem(null);
+        jComboBox2.setSelectedItem(null);
+        jComboBox3.setSelectedItem(null);
+        jComboBox4.setSelectedItem(null);
+        setKorisnici(java.util.Collections.emptyList());
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -213,7 +288,7 @@ public class PretraziKorisnikeForma extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
+    private javax.swing.JComboBox<KategorijaClanstva> jComboBox4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;

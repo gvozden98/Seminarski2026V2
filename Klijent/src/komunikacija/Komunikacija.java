@@ -175,8 +175,8 @@ public class Komunikacija {
         posaljiRequest(new Request(Operation.OBRISI_KATEGORIJA_CLANSTVA, kategorija));
     }
 
-    public void ubaciTipOpreme(TipOpreme tipOpreme) throws Exception {
-        posaljiRequest(new Request(Operation.UBACI_TIP_OPREME, tipOpreme));
+    public void ubaciTipOpreme(UbaciTipOpremeRequest request) throws Exception {
+        posaljiRequest(new Request(Operation.UBACI_TIP_OPREME, request));
     }
 
     @SuppressWarnings("unchecked")

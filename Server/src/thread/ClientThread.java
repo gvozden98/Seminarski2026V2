@@ -16,6 +16,7 @@ import komunikacija.KreirajRezervacijuRequest;
 import komunikacija.PromeniRezervacijuRequest;
 import komunikacija.PretraziRezervacijuRequest;
 import komunikacija.PrijavaSportskiObjekatRequest;
+import komunikacija.UbaciTipOpremeRequest;
 import komunikacija.Receiver;
 import komunikacija.RezervacijaPretraga;
 import komunikacija.Request;
@@ -167,7 +168,7 @@ public class ClientThread extends Thread {
                 response.setResponse(null);
             }
             case UBACI_TIP_OPREME -> {
-                ServerController.getInstance().ubaciTipOpreme((TipOpreme) request.getArgument());
+                ServerController.getInstance().ubaciTipOpreme((UbaciTipOpremeRequest) request.getArgument());
                 response.setResponse(null);
             }
             case PRETRAZI_TIP_OPREME -> {

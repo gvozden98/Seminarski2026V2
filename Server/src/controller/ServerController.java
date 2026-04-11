@@ -12,6 +12,7 @@ import komunikacija.PretraziRezervacijuRequest;
 import komunikacija.PrijavaSportskiObjekatRequest;
 import komunikacija.RezervacijaPretraga;
 import komunikacija.PromeniRezervacijuRequest;
+import komunikacija.UbaciTipOpremeRequest;
 import so.SOObrisiKategorijaClanstva;
 import so.SOObrisiKorisnik;
 import so.SOObrisiTrening;
@@ -203,9 +204,9 @@ public class ServerController {
         so.execute(kategorija);
     }
 
-    public void ubaciTipOpreme(TipOpreme tipOpreme) throws Exception {
+    public void ubaciTipOpreme(UbaciTipOpremeRequest request) throws Exception {
         SOUbaciTipOpreme so = new SOUbaciTipOpreme();
-        so.execute(tipOpreme);
+        so.execute(request);
     }
 
     public List<TipOpreme> pretraziTipOpreme(TipOpreme kriterijum) throws Exception {
