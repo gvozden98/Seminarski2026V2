@@ -35,7 +35,6 @@ public class IzmeniRezervacijuFormaController {
         izmeniRezervacijuForma.nazadAddActionListener(e -> MainCordinator.getInstance().otvoriGlavnuFormu());
         izmeniRezervacijuForma.pretraziAddActionListener(e -> pretrazi());
         izmeniRezervacijuForma.ponistiAddActionListener(e -> ponisti());
-        izmeniRezervacijuForma.pogledajRezervacijuAddActionListener(e -> pogledajRezervaciju());
         izmeniRezervacijuForma.izmeniRezervacijuAddActionListener(e -> izmeniRezervaciju());
     }
 
@@ -73,13 +72,6 @@ public class IzmeniRezervacijuFormaController {
         izmeniRezervacijuForma.setRezervacije(Collections.emptyList());
     }
 
-    private void pogledajRezervaciju() {
-        Rezervacija rezervacija = ucitajSelektovanuRezervaciju();
-        if (rezervacija != null) {
-            JOptionPane.showMessageDialog(izmeniRezervacijuForma, "Sistem je nasao Rezervaciju.", "Uspeh", JOptionPane.INFORMATION_MESSAGE);
-        }
-    }
-
     private void izmeniRezervaciju() {
         Rezervacija rezervacija = ucitajSelektovanuRezervaciju();
         if (rezervacija == null) {
@@ -101,6 +93,9 @@ public class IzmeniRezervacijuFormaController {
         if (selektovaniRed < 0) {
             JOptionPane.showMessageDialog(izmeniRezervacijuForma, "Sistem ne moze da nadje Rezervaciju.", "Greska", JOptionPane.ERROR_MESSAGE);
             return null;
+        } else {
+            JOptionPane.showMessageDialog(izmeniRezervacijuForma, "Sistem je nasao Rezervaciju.", "Uspeh", JOptionPane.INFORMATION_MESSAGE);
+
         }
 
         RezervacijaTableModel model = izmeniRezervacijuForma.getRezervacijaTableModel();

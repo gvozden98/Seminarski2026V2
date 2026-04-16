@@ -3,7 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group name="Ispiti2026">
-            <file>file:/C:/Users/Ognjen/Documents/Fakultet/PS/deveta_godina_faksa/PS_Vezbanje_Rokovi/Seminarski2026-generator/Klijent/src/klijent/Klijent.java</file>
+            <file>file:/C:/Users/Ognjen/Documents/Fakultet/PS/deveta_godina_faksa/PS_Vezbanje_Rokovi/Seminarski2026V2/Klijent/src/forme/DetaljiRezervacijeForma.java</file>
+            <file>file:/C:/Users/Ognjen/Documents/Fakultet/PS/deveta_godina_faksa/PS_Vezbanje_Rokovi/Seminarski2026V2/Klijent/src/forme/IzmeniRezervacijuForma.java</file>
+            <file>file:/C:/Users/Ognjen/Documents/Fakultet/PS/deveta_godina_faksa/PS_Vezbanje_Rokovi/Seminarski2026V2/Klijent/src/controller/KorisnikController.java</file>
+            <file>file:/C:/Users/Ognjen/Documents/Fakultet/PS/deveta_godina_faksa/PS_Vezbanje_Rokovi/Seminarski2026V2/Klijent/src/forme/DetaljiKorisnikaForma.java</file>
+            <file>file:/C:/Users/Ognjen/Documents/Fakultet/PS/deveta_godina_faksa/PS_Vezbanje_Rokovi/Seminarski2026V2/Klijent/src/controller/KreirajRezervacijuFormaController.java</file>
+            <file>file:/C:/Users/Ognjen/Documents/Fakultet/PS/deveta_godina_faksa/PS_Vezbanje_Rokovi/Seminarski2026V2/Klijent/src/komunikacija/Komunikacija.java</file>
+            <file>file:/C:/Users/Ognjen/Documents/Fakultet/PS/deveta_godina_faksa/PS_Vezbanje_Rokovi/Seminarski2026V2/Klijent/src/forme/PrijavaDialog.java</file>
+            <file>file:/C:/Users/Ognjen/Documents/Fakultet/PS/deveta_godina_faksa/PS_Vezbanje_Rokovi/Seminarski2026V2/Klijent/src/cordinator/MainCordinator.java</file>
+            <file>file:/C:/Users/Ognjen/Documents/Fakultet/PS/deveta_godina_faksa/PS_Vezbanje_Rokovi/Seminarski2026V2/Klijent/src/controller/IzmeniRezervacijuFormaController.java</file>
+            <file>file:/C:/Users/Ognjen/Documents/Fakultet/PS/deveta_godina_faksa/PS_Vezbanje_Rokovi/Seminarski2026V2/Klijent/src/forme/PretraziRezervacijeForma.java</file>
         </group>
     </open-files>
 </project-private>

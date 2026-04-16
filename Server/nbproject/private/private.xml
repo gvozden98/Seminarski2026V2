@@ -3,7 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group name="Ispiti2026">
-            <file>file:/C:/Users/Ognjen/Documents/Fakultet/PS/deveta_godina_faksa/PS_Vezbanje_Rokovi/Seminarski2026-generator/Server/src/server/Server.java</file>
+            <file>file:/C:/Users/Ognjen/Documents/Fakultet/PS/deveta_godina_faksa/PS_Vezbanje_Rokovi/Seminarski2026V2/Server/src/so/SOUcitajListuKorisnika.java</file>
+            <file>file:/C:/Users/Ognjen/Documents/Fakultet/PS/deveta_godina_faksa/PS_Vezbanje_Rokovi/Seminarski2026V2/Server/src/so/SOUbaciTipOpreme.java</file>
+            <file>file:/C:/Users/Ognjen/Documents/Fakultet/PS/deveta_godina_faksa/PS_Vezbanje_Rokovi/Seminarski2026V2/Server/src/controller/ServerskaFormaController.java</file>
+            <file>file:/C:/Users/Ognjen/Documents/Fakultet/PS/deveta_godina_faksa/PS_Vezbanje_Rokovi/Seminarski2026V2/Server/src/so/SOObrisiKorisnik.java</file>
+            <file>file:/C:/Users/Ognjen/Documents/Fakultet/PS/deveta_godina_faksa/PS_Vezbanje_Rokovi/Seminarski2026V2/Server/src/so/SOPromeniRezervaciju.java</file>
+            <file>file:/C:/Users/Ognjen/Documents/Fakultet/PS/deveta_godina_faksa/PS_Vezbanje_Rokovi/Seminarski2026V2/Server/src/konfiguracija/Konfiguracija.java</file>
+            <file>file:/C:/Users/Ognjen/Documents/Fakultet/PS/deveta_godina_faksa/PS_Vezbanje_Rokovi/Seminarski2026V2/Server/src/konfiguracija/properties.properties</file>
+            <file>file:/C:/Users/Ognjen/Documents/Fakultet/PS/deveta_godina_faksa/PS_Vezbanje_Rokovi/Seminarski2026V2/Server/src/so/SOUcitajListuKategorijaClanstva.java</file>
+            <file>file:/C:/Users/Ognjen/Documents/Fakultet/PS/deveta_godina_faksa/PS_Vezbanje_Rokovi/Seminarski2026V2/Server/src/thread/ClientThread.java</file>
+            <file>file:/C:/Users/Ognjen/Documents/Fakultet/PS/deveta_godina_faksa/PS_Vezbanje_Rokovi/Seminarski2026V2/Server/src/so/SOUcitajListuTreninga.java</file>
+            <file>file:/C:/Users/Ognjen/Documents/Fakultet/PS/deveta_godina_faksa/PS_Vezbanje_Rokovi/Seminarski2026V2/Server/src/forme/ServerskaForma.java</file>
+            <file>file:/C:/Users/Ognjen/Documents/Fakultet/PS/deveta_godina_faksa/PS_Vezbanje_Rokovi/Seminarski2026V2/Server/src/controller/ServerController.java</file>
         </group>
     </open-files>
 </project-private>

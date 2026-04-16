@@ -1,13 +1,10 @@
 package thread;
 
 import controller.ServerController;
-import domain.KategorijaClanstva;
 import domain.Korisnik;
 import domain.Rezervacija;
 import domain.StavkaRezervacije;
 import domain.SportskiObjekat;
-import domain.TipOpreme;
-import domain.Trening;
 import java.io.EOFException;
 import java.net.Socket;
 import java.net.SocketException;
@@ -119,68 +116,8 @@ public class ClientThread extends Thread {
                 ServerController.getInstance().obrisiKorisnik((Korisnik) request.getArgument());
                 response.setResponse(null);
             }
-            case PRETRAZI_SPORTSKI_OBJEKAT -> {
-                List<SportskiObjekat> objekti = ServerController.getInstance().pretraziSportskiObjekat((SportskiObjekat) request.getArgument());
-                response.setResponse(objekti);
-            }
-            case VRATI_LISTU_SPORTSKI_OBJEKAT -> {
-                List<SportskiObjekat> objekti = ServerController.getInstance().vratiListuSportskihObjekata(request.getArgument());
-                response.setResponse(objekti);
-            }
-            case UBACI_TRENING -> {
-                ServerController.getInstance().ubaciTrening((Trening) request.getArgument());
-                response.setResponse(null);
-            }
-            case PRETRAZI_TRENING -> {
-                List<Trening> treninzi = ServerController.getInstance().pretraziTrening((Trening) request.getArgument());
-                response.setResponse(treninzi);
-            }
-            case VRATI_LISTU_TRENING -> {
-                List<Trening> treninzi = ServerController.getInstance().vratiListuTreninga((Trening) request.getArgument());
-                response.setResponse(treninzi);
-            }
-            case PROMENI_TRENING -> {
-                ServerController.getInstance().promeniTrening((Trening) request.getArgument());
-                response.setResponse(null);
-            }
-            case OBRISI_TRENING -> {
-                ServerController.getInstance().obrisiTrening((Trening) request.getArgument());
-                response.setResponse(null);
-            }
-            case UBACI_KATEGORIJA_CLANSTVA -> {
-                ServerController.getInstance().ubaciKategorijaClanstva((KategorijaClanstva) request.getArgument());
-                response.setResponse(null);
-            }
-            case PRETRAZI_KATEGORIJA_CLANSTVA -> {
-                List<KategorijaClanstva> kategorije = ServerController.getInstance().pretraziKategorijaClanstva((KategorijaClanstva) request.getArgument());
-                response.setResponse(kategorije);
-            }
-            case VRATI_LISTU_KATEGORIJA_CLANSTVA -> {
-                List<KategorijaClanstva> kategorije = ServerController.getInstance().vratiListuKategorijaClanstva((KategorijaClanstva) request.getArgument());
-                response.setResponse(kategorije);
-            }
-            case PROMENI_KATEGORIJA_CLANSTVA -> {
-                ServerController.getInstance().promeniKategorijaClanstva((KategorijaClanstva) request.getArgument());
-                response.setResponse(null);
-            }
-            case OBRISI_KATEGORIJA_CLANSTVA -> {
-                ServerController.getInstance().obrisiKategorijaClanstva((KategorijaClanstva) request.getArgument());
-                response.setResponse(null);
-            }
             case UBACI_TIP_OPREME -> {
                 ServerController.getInstance().ubaciTipOpreme((UbaciTipOpremeRequest) request.getArgument());
-                response.setResponse(null);
-            }
-            case PRETRAZI_TIP_OPREME -> {
-                List<TipOpreme> tipovi = ServerController.getInstance().pretraziTipOpreme((TipOpreme) request.getArgument());
-                response.setResponse(tipovi);
-            }
-            case VRATI_LISTU_TIP_OPREME -> {
-                List<TipOpreme> tipovi = ServerController.getInstance().vratiListuTipOpreme((TipOpreme) request.getArgument());
-                response.setResponse(tipovi);
-            }
-            case PROMENI_TIP_OPREME -> {
-                ServerController.getInstance().promeniTipOpreme((TipOpreme) request.getArgument());
                 response.setResponse(null);
             }
             default -> throw new Exception("Nepoznata operacija.");

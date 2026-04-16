@@ -38,9 +38,9 @@ public class PrijavaDialog extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("email");
+        jLabel1.setText("Email");
 
-        jLabel2.setText("password");
+        jLabel2.setText("Sifra");
 
         loginBtn.setText("Login");
 

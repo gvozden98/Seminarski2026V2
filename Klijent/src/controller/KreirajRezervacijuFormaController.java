@@ -14,6 +14,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.ItemEvent;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -385,12 +386,12 @@ public class KreirajRezervacijuFormaController {
                 throw new Exception("Sistem ne moze da zapamti Rezervaciju.");
             }
 
-            LocalDateTime datumVreme = LocalDateTime.parse(kreirajRezervacijuForma.getDatum(), FORMATTER);
+            LocalDate datumKreiranja = LocalDate.parse(kreirajRezervacijuForma.getDatum(), FORMATTER_DATUM);
             BigDecimal ukupanIznos = izracunajUkupanIznos(model);
             BigDecimal ukupanPopust = izracunajUkupanPopust(model);
 
             Rezervacija rezervacija = new Rezervacija();
-            rezervacija.setDatumKreiranja(datumVreme.toLocalDate());
+            rezervacija.setDatumKreiranja(datumKreiranja);
             rezervacija.setStatusRezervacije(StatusRezervacije.KREIRANA);
             rezervacija.setUkupanIznos(ukupanIznos);
             rezervacija.setUkupanPopust(ukupanPopust);
@@ -418,11 +419,11 @@ public class KreirajRezervacijuFormaController {
                 throw new Exception("Sistem ne moze da zapamti Rezervaciju.");
             }
 
-            LocalDateTime datumVreme = LocalDateTime.parse(kreirajRezervacijuForma.getDatum(), FORMATTER);
+            LocalDate datumKreiranja = LocalDate.parse(kreirajRezervacijuForma.getDatum(), FORMATTER_DATUM);
 
             Rezervacija rezervacija = new Rezervacija();
             rezervacija.setIdRezervacija(postojecaRezervacija.getIdRezervacija());
-            rezervacija.setDatumKreiranja(datumVreme.toLocalDate());
+            rezervacija.setDatumKreiranja(datumKreiranja);
             rezervacija.setStatusRezervacije(postojecaRezervacija.getStatusRezervacije());
             rezervacija.setUkupanIznos(izracunajUkupanIznos(model));
             rezervacija.setUkupanPopust(izracunajUkupanPopust(model));

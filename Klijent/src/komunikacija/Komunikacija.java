@@ -5,7 +5,6 @@ import domain.Korisnik;
 import domain.Rezervacija;
 import domain.SportskiObjekat;
 import domain.StavkaRezervacije;
-import domain.TipOpreme;
 import domain.Trening;
 import enums.Operation;
 import java.net.Socket;
@@ -121,76 +120,8 @@ public class Komunikacija {
         posaljiRequest(new Request(Operation.OBRISI_KORISNIK, korisnik));
     }
 
-    @SuppressWarnings("unchecked")
-    public List<SportskiObjekat> pretraziSportskiObjekat(SportskiObjekat kriterijum) throws Exception {
-        return (List<SportskiObjekat>) posaljiRequest(new Request(Operation.PRETRAZI_SPORTSKI_OBJEKAT, kriterijum));
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<SportskiObjekat> vratiListuSportskihObjekata(Object kriterijum) throws Exception {
-        return (List<SportskiObjekat>) posaljiRequest(new Request(Operation.VRATI_LISTU_SPORTSKI_OBJEKAT, kriterijum));
-    }
-
-    public void ubaciTrening(Trening trening) throws Exception {
-        posaljiRequest(new Request(Operation.UBACI_TRENING, trening));
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<Trening> pretraziTrening(Trening kriterijum) throws Exception {
-        return (List<Trening>) posaljiRequest(new Request(Operation.PRETRAZI_TRENING, kriterijum));
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<Trening> vratiListuTreninga(Trening kriterijum) throws Exception {
-        return (List<Trening>) posaljiRequest(new Request(Operation.VRATI_LISTU_TRENING, kriterijum));
-    }
-
-    public void promeniTrening(Trening trening) throws Exception {
-        posaljiRequest(new Request(Operation.PROMENI_TRENING, trening));
-    }
-
-    public void obrisiTrening(Trening trening) throws Exception {
-        posaljiRequest(new Request(Operation.OBRISI_TRENING, trening));
-    }
-
-    public void ubaciKategorijaClanstva(KategorijaClanstva kategorija) throws Exception {
-        posaljiRequest(new Request(Operation.UBACI_KATEGORIJA_CLANSTVA, kategorija));
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<KategorijaClanstva> pretraziKategorijaClanstva(KategorijaClanstva kriterijum) throws Exception {
-        return (List<KategorijaClanstva>) posaljiRequest(new Request(Operation.PRETRAZI_KATEGORIJA_CLANSTVA, kriterijum));
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<KategorijaClanstva> vratiListuKategorijaClanstva(KategorijaClanstva kriterijum) throws Exception {
-        return (List<KategorijaClanstva>) posaljiRequest(new Request(Operation.VRATI_LISTU_KATEGORIJA_CLANSTVA, kriterijum));
-    }
-
-    public void promeniKategorijaClanstva(KategorijaClanstva kategorija) throws Exception {
-        posaljiRequest(new Request(Operation.PROMENI_KATEGORIJA_CLANSTVA, kategorija));
-    }
-
-    public void obrisiKategorijaClanstva(KategorijaClanstva kategorija) throws Exception {
-        posaljiRequest(new Request(Operation.OBRISI_KATEGORIJA_CLANSTVA, kategorija));
-    }
-
     public void ubaciTipOpreme(UbaciTipOpremeRequest request) throws Exception {
         posaljiRequest(new Request(Operation.UBACI_TIP_OPREME, request));
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<TipOpreme> pretraziTipOpreme(TipOpreme kriterijum) throws Exception {
-        return (List<TipOpreme>) posaljiRequest(new Request(Operation.PRETRAZI_TIP_OPREME, kriterijum));
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<TipOpreme> vratiListuTipOpreme(TipOpreme kriterijum) throws Exception {
-        return (List<TipOpreme>) posaljiRequest(new Request(Operation.VRATI_LISTU_TIP_OPREME, kriterijum));
-    }
-
-    public void promeniTipOpreme(TipOpreme tipOpreme) throws Exception {
-        posaljiRequest(new Request(Operation.PROMENI_TIP_OPREME, tipOpreme));
     }
 
     private Object posaljiRequest(Request request) throws Exception {

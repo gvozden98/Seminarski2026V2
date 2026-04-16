@@ -48,7 +48,10 @@ public class DbRepositoryGeneric implements DbRepository<AbstractDomainObject> {
                 + " SET " + param.vratiVrednostiZaIzmenu()
                 + " WHERE " + param.vratiPrimarniKljuc();
         try (Statement statement = getConnection().createStatement()) {
-            statement.executeUpdate(sql);
+            int brojIzmenjenihRedova = statement.executeUpdate(sql);
+            if (brojIzmenjenihRedova == 0) {
+                throw new Exception("Sistem ne moze da izmeni zapis.");
+            }
         }
     }
 
@@ -57,7 +60,10 @@ public class DbRepositoryGeneric implements DbRepository<AbstractDomainObject> {
         String sql = "DELETE FROM " + param.vratiNazivTabele()
                 + " WHERE " + param.vratiPrimarniKljuc();
         try (Statement statement = getConnection().createStatement()) {
-            statement.executeUpdate(sql);
+            int brojObrisanihRedova = statement.executeUpdate(sql);
+            if (brojObrisanihRedova == 0) {
+                throw new Exception("Sistem ne moze da obrise zapis.");
+            }
         }
     }
 

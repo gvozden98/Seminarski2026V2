@@ -17,11 +17,18 @@ public class Server extends Thread {
         this.port = port;
     }
 
+    public void pokreniServer() throws Exception {
+        if (pokrenut) {
+            return;
+        }
+        serverSocket = new ServerSocket(port);
+        pokrenut = true;
+        start();
+    }
+
     @Override
     public void run() {
         try {
-            serverSocket = new ServerSocket(port);
-            pokrenut = true;
             while (pokrenut) {
                 Socket socket = serverSocket.accept();
                 ClientThread clientThread = new ClientThread(socket, this);
@@ -54,6 +61,10 @@ public class Server extends Thread {
         } catch (Exception e) {
             System.out.println("Greska pri zatvaranju servera: " + e.getMessage());
         }
+    }
+
+    public boolean isPokrenut() {
+        return pokrenut;
     }
 
     public void removeClient(ClientThread clientThread) {

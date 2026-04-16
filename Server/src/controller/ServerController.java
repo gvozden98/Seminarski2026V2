@@ -5,7 +5,6 @@ import domain.Korisnik;
 import domain.Rezervacija;
 import domain.StavkaRezervacije;
 import domain.SportskiObjekat;
-import domain.TipOpreme;
 import domain.Trening;
 import java.util.List;
 import komunikacija.PretraziRezervacijuRequest;
@@ -13,26 +12,15 @@ import komunikacija.PrijavaSportskiObjekatRequest;
 import komunikacija.RezervacijaPretraga;
 import komunikacija.PromeniRezervacijuRequest;
 import komunikacija.UbaciTipOpremeRequest;
-import so.SOObrisiKategorijaClanstva;
 import so.SOObrisiKorisnik;
-import so.SOObrisiTrening;
-import so.SOPretraziKategorijaClanstva;
 import so.SOPretraziKorisnik;
 import so.SOPretraziRezervaciju;
-import so.SOPretraziSportskiObjekat;
-import so.SOPretraziTipOpreme;
-import so.SOPretraziTrening;
 import so.SOPrijaviSportskiObjekat;
-import so.SOPromeniKategorijaClanstva;
 import so.SOPromeniKorisnik;
 import so.SOPromeniRezervaciju;
-import so.SOPromeniTipOpreme;
-import so.SOPromeniTrening;
 import so.SOSacuvajRezervaciju;
-import so.SOUbaciKategorijaClanstva;
 import so.SOUbaciKorisnik;
 import so.SOUbaciTipOpreme;
-import so.SOUbaciTrening;
 import so.SOUcitajListuKategorijaClanstva;
 import so.SOUcitajListuKorisnika;
 import so.SOUcitajListuSportskihObjekata;
@@ -40,9 +28,6 @@ import so.SOUcitajListuTreninga;
 import so.SOVratiListuKorisnika;
 import so.SOVratiListuRezervacija;
 import so.SOVratiListuStavkiRezervacije;
-import so.SOVratiListuSportskihObjekata;
-import so.SOVratiListuTipovaOpreme;
-import so.SOVratiListuTreninga;
 
 public class ServerController {
 
@@ -138,92 +123,9 @@ public class ServerController {
         so.execute(korisnik);
     }
 
-    public List<SportskiObjekat> pretraziSportskiObjekat(SportskiObjekat kriterijum) throws Exception {
-        SOPretraziSportskiObjekat so = new SOPretraziSportskiObjekat();
-        so.execute(kriterijum);
-        return so.getObjekti();
-    }
-
-    public List<SportskiObjekat> vratiListuSportskihObjekata(Object kriterijum) throws Exception {
-        SOVratiListuSportskihObjekata so = new SOVratiListuSportskihObjekata();
-        so.execute(kriterijum);
-        return so.getObjekti();
-    }
-
-    public void ubaciTrening(Trening trening) throws Exception {
-        SOUbaciTrening so = new SOUbaciTrening();
-        so.execute(trening);
-    }
-
-    public List<Trening> pretraziTrening(Trening kriterijum) throws Exception {
-        SOPretraziTrening so = new SOPretraziTrening();
-        so.execute(kriterijum);
-        return so.getTreninzi();
-    }
-
-    public List<Trening> vratiListuTreninga(Trening kriterijum) throws Exception {
-        SOVratiListuTreninga so = new SOVratiListuTreninga();
-        so.execute(kriterijum);
-        return so.getTreninzi();
-    }
-
-    public void promeniTrening(Trening trening) throws Exception {
-        SOPromeniTrening so = new SOPromeniTrening();
-        so.execute(trening);
-    }
-
-    public void obrisiTrening(Trening trening) throws Exception {
-        SOObrisiTrening so = new SOObrisiTrening();
-        so.execute(trening);
-    }
-
-    public void ubaciKategorijaClanstva(KategorijaClanstva kategorija) throws Exception {
-        SOUbaciKategorijaClanstva so = new SOUbaciKategorijaClanstva();
-        so.execute(kategorija);
-    }
-
-    public List<KategorijaClanstva> pretraziKategorijaClanstva(KategorijaClanstva kriterijum) throws Exception {
-        SOPretraziKategorijaClanstva so = new SOPretraziKategorijaClanstva();
-        so.execute(kriterijum);
-        return so.getKategorije();
-    }
-
-    public List<KategorijaClanstva> vratiListuKategorijaClanstva(KategorijaClanstva kriterijum) throws Exception {
-        SOPretraziKategorijaClanstva so = new SOPretraziKategorijaClanstva();
-        so.execute(kriterijum);
-        return so.getKategorije();
-    }
-
-    public void promeniKategorijaClanstva(KategorijaClanstva kategorija) throws Exception {
-        SOPromeniKategorijaClanstva so = new SOPromeniKategorijaClanstva();
-        so.execute(kategorija);
-    }
-
-    public void obrisiKategorijaClanstva(KategorijaClanstva kategorija) throws Exception {
-        SOObrisiKategorijaClanstva so = new SOObrisiKategorijaClanstva();
-        so.execute(kategorija);
-    }
-
     public void ubaciTipOpreme(UbaciTipOpremeRequest request) throws Exception {
         SOUbaciTipOpreme so = new SOUbaciTipOpreme();
         so.execute(request);
-    }
-
-    public List<TipOpreme> pretraziTipOpreme(TipOpreme kriterijum) throws Exception {
-        SOPretraziTipOpreme so = new SOPretraziTipOpreme();
-        so.execute(kriterijum);
-        return so.getTipovi();
-    }
-
-    public List<TipOpreme> vratiListuTipOpreme(TipOpreme kriterijum) throws Exception {
-        SOVratiListuTipovaOpreme so = new SOVratiListuTipovaOpreme();
-        so.execute(kriterijum);
-        return so.getTipovi();
-    }
-
-    public void promeniTipOpreme(TipOpreme tipOpreme) throws Exception {
-        SOPromeniTipOpreme so = new SOPromeniTipOpreme();
-        so.execute(tipOpreme);
     }
 
     public List<Rezervacija> vratiListuRezervacija(Object kriterijum) throws Exception {

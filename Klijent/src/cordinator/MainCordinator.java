@@ -1,6 +1,7 @@
 package cordinator;
 
 import controller.GlavnaFormaController;
+import controller.DetaljiRezervacijeFormaController;
 import controller.DetaljiKorisnikaFormaController;
 import controller.IzmeniRezervacijuFormaController;
 import controller.KreirajKorisnikaFormaController;
@@ -15,6 +16,7 @@ import domain.SportskiObjekat;
 import domain.StavkaRezervacije;
 import domain.Trening;
 import forme.DetaljiKorisnikaForma;
+import forme.DetaljiRezervacijeForma;
 import forme.GlavnaForma;
 import forme.IzmeniRezervacijuForma;
 import forme.KreirajKorisnikaForma;
@@ -46,6 +48,8 @@ public class MainCordinator {
     private IzmeniRezervacijuFormaController izmeniRezervacijuFormaController;
     private PretraziRezervacijeForma pretraziRezervacijeForma;
     private PretraziRezervacijeFormaController pretraziRezervacijeFormaController;
+    private DetaljiRezervacijeForma detaljiRezervacijeForma;
+    private DetaljiRezervacijeFormaController detaljiRezervacijeFormaController;
     private KreirajKorisnikaForma kreirajKorisnikaForma;
     private KreirajKorisnikaFormaController kreirajKorisnikaFormaController;
     private KreirajTipOpremeForma kreirajTipOpremeForma;
@@ -173,6 +177,15 @@ public class MainCordinator {
         pretraziRezervacijeFormaController.otvori();
     }
 
+    public void otvoriDetaljiRezervacijeFormu() {
+        if (detaljiRezervacijeForma != null) {
+            detaljiRezervacijeForma.dispose();
+        }
+        detaljiRezervacijeForma = new DetaljiRezervacijeForma();
+        detaljiRezervacijeFormaController = new DetaljiRezervacijeFormaController(detaljiRezervacijeForma);
+        detaljiRezervacijeFormaController.otvori();
+    }
+
     public void otvoriKreirajKorisnikaFormu() {
         zatvoriGlavnuFormu();
         zatvoriRezervacijaForme();
@@ -232,6 +245,11 @@ public class MainCordinator {
             pretraziRezervacijeForma.dispose();
             pretraziRezervacijeForma = null;
             pretraziRezervacijeFormaController = null;
+        }
+        if (detaljiRezervacijeForma != null) {
+            detaljiRezervacijeForma.dispose();
+            detaljiRezervacijeForma = null;
+            detaljiRezervacijeFormaController = null;
         }
     }
 
