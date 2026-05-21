@@ -13,7 +13,6 @@ import controller.PrijavaController;
 import domain.Korisnik;
 import domain.Rezervacija;
 import domain.SportskiObjekat;
-import domain.StavkaRezervacije;
 import domain.Trening;
 import forme.DetaljiKorisnikaForma;
 import forme.DetaljiRezervacijeForma;
@@ -25,8 +24,6 @@ import forme.KreirajRezervacijuForma;
 import forme.PretraziKorisnikeForma;
 import forme.PretraziRezervacijeForma;
 import forme.PrijavaDialog;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainCordinator {
 
@@ -37,7 +34,6 @@ public class MainCordinator {
     private SportskiObjekat izabraniObjekat;
     private Trening izabraniTrening;
     private Rezervacija izabranaRezervacija;
-    private List<StavkaRezervacije> stavkeIzabraneRezervacije = new ArrayList<>();
     private boolean izmenaRezervacije;
     private GlavnaForma glavnaForma;
     private PrijavaController prijavaController;
@@ -109,14 +105,6 @@ public class MainCordinator {
         this.izabranaRezervacija = izabranaRezervacija;
     }
 
-    public List<StavkaRezervacije> getStavkeIzabraneRezervacije() {
-        return stavkeIzabraneRezervacije;
-    }
-
-    public void setStavkeIzabraneRezervacije(List<StavkaRezervacije> stavkeIzabraneRezervacije) {
-        this.stavkeIzabraneRezervacije = stavkeIzabraneRezervacije;
-    }
-
     public boolean isIzmenaRezervacije() {
         return izmenaRezervacije;
     }
@@ -128,7 +116,6 @@ public class MainCordinator {
     public void zapocniKreiranjeRezervacije() {
         izmenaRezervacije = false;
         izabranaRezervacija = null;
-        stavkeIzabraneRezervacije = new ArrayList<>();
         otvoriKreirajRezervacijuFormu();
     }
 

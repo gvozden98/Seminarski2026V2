@@ -17,6 +17,7 @@ public class Rezervacija implements AbstractDomainObject {
     private BigDecimal ukupanPopust;
     private Korisnik korisnik;
     private SportskiObjekat sportskiObjekat;
+    private List<StavkaRezervacije> stavkeRezervacije = new ArrayList<>();
 
     public Rezervacija() {
     }
@@ -29,6 +30,11 @@ public class Rezervacija implements AbstractDomainObject {
         this.ukupanPopust = ukupanPopust;
         this.korisnik = korisnik;
         this.sportskiObjekat = sportskiObjekat;
+    }
+
+    public Rezervacija(Integer idRezervacija, LocalDate datumKreiranja, StatusRezervacije statusRezervacije, BigDecimal ukupanIznos, BigDecimal ukupanPopust, Korisnik korisnik, SportskiObjekat sportskiObjekat, List<StavkaRezervacije> stavkeRezervacije) {
+        this(idRezervacija, datumKreiranja, statusRezervacije, ukupanIznos, ukupanPopust, korisnik, sportskiObjekat);
+        this.stavkeRezervacije = stavkeRezervacije;
     }
 
     public Integer getIdRezervacija() {
@@ -85,6 +91,14 @@ public class Rezervacija implements AbstractDomainObject {
 
     public void setSportskiObjekat(SportskiObjekat sportskiObjekat) {
         this.sportskiObjekat = sportskiObjekat;
+    }
+
+    public List<StavkaRezervacije> getStavkeRezervacije() {
+        return stavkeRezervacije;
+    }
+
+    public void setStavkeRezervacije(List<StavkaRezervacije> stavkeRezervacije) {
+        this.stavkeRezervacije = stavkeRezervacije;
     }
 
     @Override

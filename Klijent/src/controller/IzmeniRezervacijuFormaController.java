@@ -1,11 +1,7 @@
 package controller;
 
 import cordinator.MainCordinator;
-import domain.Korisnik;
 import domain.Rezervacija;
-import domain.StavkaRezervacije;
-import domain.SportskiObjekat;
-import domain.Trening;
 import enums.StatusRezervacije;
 import forme.IzmeniRezervacijuForma;
 import java.util.Collections;
@@ -77,15 +73,9 @@ public class IzmeniRezervacijuFormaController {
         if (rezervacija == null) {
             return;
         }
-        try {
-            List<StavkaRezervacije> stavke = rezervacijaController.vratiListuStavkiRezervacije(rezervacija);
-            MainCordinator.getInstance().setIzabranaRezervacija(rezervacija);
-            MainCordinator.getInstance().setStavkeIzabraneRezervacije(stavke);
-            MainCordinator.getInstance().setIzmenaRezervacije(true);
-            MainCordinator.getInstance().otvoriKreirajRezervacijuFormu();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(izmeniRezervacijuForma, e.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
-        }
+        MainCordinator.getInstance().setIzabranaRezervacija(rezervacija);
+        MainCordinator.getInstance().setIzmenaRezervacije(true);
+        MainCordinator.getInstance().otvoriKreirajRezervacijuFormu();
     }
 
     private Rezervacija ucitajSelektovanuRezervaciju() {

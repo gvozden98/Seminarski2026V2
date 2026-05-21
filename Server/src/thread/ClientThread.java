@@ -3,7 +3,6 @@ package thread;
 import controller.ServerController;
 import domain.Korisnik;
 import domain.Rezervacija;
-import domain.StavkaRezervacije;
 import domain.SportskiObjekat;
 import java.io.EOFException;
 import java.net.Socket;
@@ -83,10 +82,6 @@ public class ClientThread extends Thread {
             case VRATI_LISTU_REZERVACIJA -> {
                 List<Rezervacija> rezervacije = ServerController.getInstance().vratiListuRezervacija(request.getArgument());
                 response.setResponse(rezervacije);
-            }
-            case VRATI_LISTU_STAVKI_REZERVACIJE -> {
-                List<StavkaRezervacije> stavke = ServerController.getInstance().vratiListuStavkiRezervacije((Rezervacija) request.getArgument());
-                response.setResponse(stavke);
             }
             case PROMENI_REZERVACIJU -> {
                 ServerController.getInstance().promeniRezervaciju((PromeniRezervacijuRequest) request.getArgument());

@@ -59,7 +59,7 @@ public class KreirajTipOpremeForma extends javax.swing.JFrame {
 
         jButton1.setText("Nazad");
 
-        jButton2.setText("Dodaj");
+        jButton2.setText("Sacuvaj");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ODLICNO", "DOBRO", "OSTECENO" }));
 

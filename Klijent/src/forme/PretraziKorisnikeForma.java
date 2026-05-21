@@ -9,7 +9,6 @@ import domain.Korisnik;
 import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.event.MenuListener;
 import models.KorisnikListModel;
 
 /**
@@ -190,22 +189,6 @@ public class PretraziKorisnikeForma extends javax.swing.JFrame {
 
     public void detaljiAddActionListener(ActionListener actionListener) {
         jButton4.addActionListener(actionListener);
-    }
-
-    public void pocetnaAddMenuListener(MenuListener menuListener) {
-        // Forma nema meni u trenutnoj verziji.
-    }
-
-    public void kreirajAddMenuListener(MenuListener menuListener) {
-        // Forma nema meni u trenutnoj verziji.
-    }
-
-    public void izmeniAddMenuListener(MenuListener menuListener) {
-        // Forma nema meni u trenutnoj verziji.
-    }
-
-    public void pretraziAddMenuListener(MenuListener menuListener) {
-        // Forma nema meni u trenutnoj verziji.
     }
 
     public void setImena(List<String> imena) {

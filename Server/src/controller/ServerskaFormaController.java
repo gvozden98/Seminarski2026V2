@@ -52,6 +52,7 @@ public class ServerskaFormaController {
             }
 
             server.zaustaviServer();
+            server = null;
             serverskaForma.setStatusServera("Iskljucen");
             JOptionPane.showMessageDialog(serverskaForma, "Sistem je zaustavio server.", "Uspeh", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {

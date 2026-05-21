@@ -48,11 +48,13 @@ public class Server extends Thread {
 
     public void zaustaviServer() {
         pokrenut = false;
+        List<ClientThread> klijentiZaZaustavljanje;
         synchronized (klijenti) {
-            for (ClientThread klijent : klijenti) {
-                klijent.stopRunning();
-            }
+            klijentiZaZaustavljanje = new ArrayList<>(klijenti);
             klijenti.clear();
+        }
+        for (ClientThread klijent : klijentiZaZaustavljanje) {
+            klijent.stopRunning();
         }
         try {
             if (serverSocket != null && !serverSocket.isClosed()) {

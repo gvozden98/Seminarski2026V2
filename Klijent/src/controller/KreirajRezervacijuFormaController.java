@@ -8,6 +8,7 @@ import domain.StavkaRezervacije;
 import domain.SportskiObjekat;
 import domain.Trening;
 import enums.StatusRezervacije;
+import enums.StatusTreninga;
 import forme.KreirajRezervacijuForma;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
@@ -144,8 +145,9 @@ public class KreirajRezervacijuFormaController {
             List<SportskiObjekat> sportskiObjekti = rezervacijaController.vratiListuSvihSportskihObjekata();
             List<Korisnik> korisnici = rezervacijaController.vratiListuSvihKorisnika();
             List<KategorijaClanstva> kategorije = rezervacijaController.vratiListuSvihKategorijaClanstva();
-            List<Trening> treninzi = rezervacijaController.vratiListuSvihTreninga();
+            List<Trening> treninzi = filtrirajAktivneTreninge(rezervacijaController.vratiListuSvihTreninga());
             dopuniKorisnikeKategorijama(korisnici, kategorije);
+            kreirajRezervacijuForma.setStatusi();
             kreirajRezervacijuForma.setSportskiObjekti(sportskiObjekti);
             kreirajRezervacijuForma.setKorisnici(korisnici);
             kreirajRezervacijuForma.setTreninzi(treninzi);
@@ -154,6 +156,7 @@ public class KreirajRezervacijuFormaController {
             } else {
                 kreirajRezervacijuForma.setDatum(LocalDateTime.now().format(FORMATTER_DATUM));
                 kreirajRezervacijuForma.setTekstAkcionogDugmeta("Rezervisi");
+                kreirajRezervacijuForma.setSelektovaniStatusRezervacije(StatusRezervacije.KREIRANA);
                 postaviTrajanjeZaSelektovaniTrening();
             }
         } catch (Exception e) {
@@ -163,16 +166,22 @@ public class KreirajRezervacijuFormaController {
 
     private void pripremiFormuZaIzmenu(List<Korisnik> korisnici, List<SportskiObjekat> sportskiObjekti) {
         Rezervacija rezervacija = MainCordinator.getInstance().getIzabranaRezervacija();
-        List<StavkaRezervacije> stavke = MainCordinator.getInstance().getStavkeIzabraneRezervacije();
 
         if (rezervacija == null) {
             return;
+        }
+
+        List<StavkaRezervacije> stavke = rezervacija.getStavkeRezervacije();
+        if (stavke == null) {
+            stavke = java.util.Collections.emptyList();
         }
 
         kreirajRezervacijuForma.setTekstAkcionogDugmeta("Potvrdi izmene");
         if (rezervacija.getDatumKreiranja() != null) {
             kreirajRezervacijuForma.setDatum(LocalDateTime.now().format(FORMATTER_DATUM));
         }
+        kreirajRezervacijuForma.setSelektovaniStatusRezervacije(rezervacija.getStatusRezervacije());
+        kreirajRezervacijuForma.setStatusRezervacijeEnabled(true);
         kreirajRezervacijuForma.setSelektovaniKorisnik(pronadjiKorisnika(korisnici, rezervacija));
         kreirajRezervacijuForma.setSelektovaniSportskiObjekat(pronadjiSportskiObjekat(sportskiObjekti, rezervacija));
         kreirajRezervacijuForma.setStavke(kopirajStavke(stavke));
@@ -371,6 +380,12 @@ public class KreirajRezervacijuFormaController {
         }
     }
 
+    private List<Trening> filtrirajAktivneTreninge(List<Trening> treninzi) {
+        return treninzi.stream()
+                .filter(trening -> trening.getStatusTreninga() == StatusTreninga.AKTIVAN)
+                .collect(Collectors.toList());
+    }
+
     private void rezervisi() {
         if (MainCordinator.getInstance().isIzmenaRezervacije()) {
             potvrdiIzmene();
@@ -392,7 +407,11 @@ public class KreirajRezervacijuFormaController {
 
             Rezervacija rezervacija = new Rezervacija();
             rezervacija.setDatumKreiranja(datumKreiranja);
-            rezervacija.setStatusRezervacije(StatusRezervacije.KREIRANA);
+            StatusRezervacije statusRezervacije = kreirajRezervacijuForma.getSelektovaniStatusRezervacije();
+            if (statusRezervacije == null) {
+                throw new Exception("Sistem ne moze da zapamti Rezervaciju.");
+            }
+            rezervacija.setStatusRezervacije(statusRezervacije);
             rezervacija.setUkupanIznos(ukupanIznos);
             rezervacija.setUkupanPopust(ukupanPopust);
             rezervacija.setKorisnik(korisnik);
@@ -424,7 +443,11 @@ public class KreirajRezervacijuFormaController {
             Rezervacija rezervacija = new Rezervacija();
             rezervacija.setIdRezervacija(postojecaRezervacija.getIdRezervacija());
             rezervacija.setDatumKreiranja(datumKreiranja);
-            rezervacija.setStatusRezervacije(postojecaRezervacija.getStatusRezervacije());
+            StatusRezervacije statusRezervacije = kreirajRezervacijuForma.getSelektovaniStatusRezervacije();
+            if (statusRezervacije == null) {
+                throw new Exception("Sistem ne moze da zapamti Rezervaciju.");
+            }
+            rezervacija.setStatusRezervacije(statusRezervacije);
             rezervacija.setUkupanIznos(izracunajUkupanIznos(model));
             rezervacija.setUkupanPopust(izracunajUkupanPopust(model));
             rezervacija.setKorisnik(korisnik);
@@ -436,7 +459,6 @@ public class KreirajRezervacijuFormaController {
             JOptionPane.showMessageDialog(kreirajRezervacijuForma, "Sistem je zapamtio Rezervaciju.", "Uspeh", JOptionPane.INFORMATION_MESSAGE);
             MainCordinator.getInstance().setIzmenaRezervacije(false);
             MainCordinator.getInstance().setIzabranaRezervacija(null);
-            MainCordinator.getInstance().setStavkeIzabraneRezervacije(java.util.Collections.emptyList());
             MainCordinator.getInstance().otvoriGlavnuFormu();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(kreirajRezervacijuForma, "Sistem ne moze da zapamti Rezervaciju.", "Greska", JOptionPane.ERROR_MESSAGE);
